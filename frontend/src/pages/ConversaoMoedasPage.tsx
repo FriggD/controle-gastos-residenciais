@@ -23,6 +23,14 @@ const ConversaoMoedasPage = () => {
     { code: 'AUD', name: 'Dólar Australiano' },
   ];
 
+  const handleValorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    value = value.replace(',', '.');
+    if (value === '' || /^\d*\.?\d{0,2}$/.test(value)) {
+      setValor(value);
+    }
+  };
+
   const converter = async () => {
     if (!valor || parseFloat(valor) <= 0) {
       setError('Digite um valor válido');
@@ -81,13 +89,11 @@ const ConversaoMoedasPage = () => {
           <div className="form-group">
             <label>Valor</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               value={valor}
-              onChange={(e) => setValor(e.target.value)}
+              onChange={handleValorChange}
               placeholder="0.00"
-              min="0"
-              step="0.01"
             />
           </div>
 
@@ -148,7 +154,7 @@ const ConversaoMoedasPage = () => {
             Resultado
           </h2>
           <div style={{ padding: '1.5rem', background: 'var(--gray-50)', borderRadius: 'var(--radius-sm)' }}>
-            <div style={{ fontSize: '1.125rem', marginBottom: '0.5rem' }}>
+            <div style={{ fontSize: '1.125rem', marginBottom: '0.5rem', color: 'var(--gray-700)' }}>
               <strong>{parseFloat(valor).toFixed(2)} {moedaOrigem}</strong> =
             </div>
             <div style={{ fontSize: '2rem', fontWeight: 'bold', color: 'var(--primary)', marginBottom: '1rem' }}>
