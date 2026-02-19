@@ -101,6 +101,14 @@ const MockDataButtons = () => {
         }
       }
 
+      for (const id of mockIds.categorias) {
+        try {
+          await categoriaService.delete(id);
+        } catch (err) {
+          console.error(`Erro ao deletar categoria ${id}:`, err);
+        }
+      }
+
       setMockIds({ pessoas: [], categorias: [], transacoes: [] });
       localStorage.removeItem(MOCK_IDS_KEY);
       showToast('Dados mockados removidos com sucesso!', 'success');

@@ -27,6 +27,10 @@ const Navigation = () => {
           <span className="material-symbols-outlined">analytics</span>
           Relatórios
         </Link>
+        <Link to="/conversao-moedas" className={`nav-link ${isActive('/conversao-moedas') ? 'active' : ''}`}>
+          <span className="material-symbols-outlined">currency_exchange</span>
+          Conversão
+        </Link>
       </div>
     </nav>
   );

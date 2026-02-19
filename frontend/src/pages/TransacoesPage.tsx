@@ -42,7 +42,7 @@ const TransacoesPage = () => {
     try {
       await transacaoService.create({
         descricao,
-        valor: parseFloat(valor),
+        valor: parseFloat(parseFloat(valor).toFixed(2)),
         tipo,
         categoriaId,
         pessoaId,
@@ -55,6 +55,13 @@ const TransacoesPage = () => {
       loadData();
     } catch (err: any) {
       setError(err.response?.data?.error || 'Erro ao salvar transação');
+    }
+  };
+
+  const handleValorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value === '' || /^\d*\.?\d{0,2}$/.test(value)) {
+      setValor(value);
     }
   };
 
@@ -97,13 +104,12 @@ const TransacoesPage = () => {
             <div className="form-group">
               <label>Valor</label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 value={valor}
-                onChange={(e) => setValor(e.target.value)}
+                onChange={handleValorChange}
                 required
-                min="0.01"
-                step="0.01"
+                placeholder="0.00"
               />
             </div>
             <div className="form-group">
