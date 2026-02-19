@@ -59,7 +59,8 @@ const TransacoesPage = () => {
   };
 
   const handleValorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    value = value.replace(',', '.');
     if (value === '' || /^\d*\.?\d{0,2}$/.test(value)) {
       setValor(value);
     }
