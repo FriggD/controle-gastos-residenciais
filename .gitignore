@@ -1,0 +1,32 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+*.log
+.vs/
+.vscode/
+
+# Node
+node_modules/
+dist/
+.env
+.env.local
+
+# Database
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
