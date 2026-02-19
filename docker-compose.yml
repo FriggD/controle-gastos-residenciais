@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: controlegastos-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: controlegastos
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - controlegastos-network
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: controlegastos-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=controlegastos;Username=postgres;Password=postgres
+    ports:
+      - "5000:80"
+    depends_on:
+      - postgres
+    networks:
+      - controlegastos-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: controlegastos-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    networks:
+      - controlegastos-network
+
+volumes:
+  postgres_data:
+
+networks:
+  controlegastos-network:
+    driver: bridge
