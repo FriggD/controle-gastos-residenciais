@@ -6,6 +6,7 @@ import CategoriasPage from './pages/CategoriasPage';
 import TransacoesPage from './pages/TransacoesPage';
 import RelatoriosPage from './pages/RelatoriosPage';
 import ConversaoMoedasPage from './pages/ConversaoMoedasPage';
+import DashboardPage from './pages/DashboardPage';
 import './styles/global.css';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     <BrowserRouter>
       <Navigation />
       <Routes>
-        <Route path="/" element={<PessoasPage />} />
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="/pessoas" element={<PessoasPage />} />
         <Route path="/categorias" element={<CategoriasPage />} />
         <Route path="/transacoes" element={<TransacoesPage />} />
         <Route path="/relatorios" element={<RelatoriosPage />} />

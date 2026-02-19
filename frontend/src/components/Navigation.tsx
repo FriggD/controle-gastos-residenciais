@@ -12,6 +12,10 @@ const Navigation = () => {
           Controle Financeiro
         </div>
         <Link to="/" className={`nav-link ${isActive('/') ? 'active' : ''}`}>
+          <span className="material-symbols-outlined">dashboard</span>
+          Dashboard
+        </Link>
+        <Link to="/pessoas" className={`nav-link ${isActive('/pessoas') ? 'active' : ''}`}>
           <span className="material-symbols-outlined">person</span>
           Pessoas
         </Link>

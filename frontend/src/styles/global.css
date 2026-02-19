@@ -426,6 +426,14 @@ body {
   border-left: 4px solid var(--danger);
 }
 
+.toast-info {
+  border-left: 4px solid var(--primary);
+}
+
+.toast-warning {
+  border-left: 4px solid var(--warning);
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
